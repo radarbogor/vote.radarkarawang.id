@@ -52,7 +52,7 @@ class LoginController extends Controller
 
             return redirect()->route('home');
         }catch(\Throwable $th){
-           return redirect()->route('google.login');
+           return redirect()->route('facebook.login');
         }
     }
 

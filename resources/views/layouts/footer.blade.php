@@ -4,7 +4,7 @@
     <div class="container text-md-left">
       <div class="row text-md-left pt-3">
         <div class="col-md-6">
-          <img src="{{ asset('img/RB white.png') }}" alt="logo radar bogor" class="mb-2" style="width: 250px">
+          <img src="{{ asset('img/logo-radar-krwg.png') }}" alt="logo radar bogor" class="mb-2" style="width: 250px">
           <hr>
           <h5>Graha Pena Bogor</h5>
           <div class="d-flex">
@@ -58,9 +58,9 @@
         </div>
         <hr>
         <div class="d-flex align-items-center">
-            <p class="mb-0">2022 Copyright &copy All rights reserved by:
+            <p class="mb-0">&copy {{date('Y')}}
               <a href="#" style="text-decoration: none;">
-                <strong class="text-light">Radar Bogor</strong>
+                <strong class="text-light">Radar Karawang</strong>
               </a>
             </p>
         </div>

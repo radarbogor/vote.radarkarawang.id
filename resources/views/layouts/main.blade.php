@@ -42,9 +42,9 @@
     {{-- Aos --}}
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
-    <link rel="icon" type="image/png" sizes="96x96" href="{{ asset('/img/favicon-96x96.png') }}">
+    <link rel="icon" type="image/png" sizes="96x96" href="{{ asset('/img/favicon-RK.png') }}">
     <link rel="stylesheet" href="{{ asset('css/global.css') }}">
-    <title>Polling Radar Bogor | {{ $title }}</title>
+    <title>Polling Radar Karawang | {{ $title }}</title>
   </head>
   <body class="bg-light">
 
