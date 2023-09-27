@@ -132,11 +132,18 @@
     aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
-          <div class="modal-header">
-            <h1 class="modal-title fs-5" id="exampleModalLabel">Login Options</h1>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
+          
+        <div class="modal-body">
+            <div class="d-flex justify-content-end">
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="text-center mb-5">
+                <div class="d-flex justify-content-center mb-3 ">
+                    <img src="{{ asset('img/favicon-RK.png') }}" alt="logo radar karawang" style="width: 100px;">
+                  </div>
+                  <h4>Polling Radar Karawang</h4>
+                  <p>Login Options</p>
+            </div>
             <div class="text-center">
                 <div class="d-grid gap-2">
                     <a href="{{ route('facebook.login') }}" class="btn btn-outline-dark">
