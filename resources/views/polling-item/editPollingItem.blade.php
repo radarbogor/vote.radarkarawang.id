@@ -20,7 +20,7 @@
                 <form action="{{ '/admin/edit-polling-item/' . $voteItem->id }}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="card-header">
-                        <h6 class="mb-0 text-muted"><i class="fas fa-pen"></i> Edit Polling Unit</h6>
+                        <h6 class="mb-0 text-muted"><i class="fas fa-pen"></i> Edit Polling Item</h6>
                     </div>
                     <div class="card-body">
                         <div class="row my-2 d-flex align-items-center">
@@ -71,7 +71,7 @@
                                 <div class="row">
                                     <div class="col-lg-6">
                                         {{-- Input vote_name --}}
-                                        <input type="text" class="form-control mt-4 mb-2"
+                                        <input type="text" class="form-control mb-2"
                                             value="{{ $voteItem->vote_name }}" aria-label="Title" name="vote_name"
                                             id="vote_name">
                                         {{-- Response notif form input title --}}
@@ -85,7 +85,7 @@
                                     </div>
                                     <div class="col-lg-6">
                                         {{-- Input slug --}}
-                                        <span class="text-xs text-danger">click tab for generate new slug</span>
+                                        {{-- <span class="text-xs text-danger">click tab for generate new slug</span> --}}
                                         <input type="text" class="form-control mb-2" value="{{ $voteItem->slug }}"
                                             aria-label="slug" name="slug" id="slug" readonly>
                                         {{-- Response notif form input slug --}}
@@ -121,21 +121,18 @@
                                             aria-label="Close"></button>
                                     </div>
                                 @enderror
-
-                                <div class="input-group mt-5">
-                                    <input type="checkbox" class="form-check-input m-2" id="premium_profile"
-                                        name="premium_profile" value="1" @if ($voteItem->premium_profile == 1) {{'checked'}} @endif>
-                                    <label for="premium_profile" class="mt-1"> Premium Profile</label><br>
-                                </div>
                             </div>
                         </div>
                     </div>
                     <div class="card-footer">
                         <div class="gap-2 d-flex justify-content-end">
+                            <div class="input-check">
+                                <input type="checkbox" class="form-check-input m-2" id="premium_profile"
+                                    name="premium_profile" value="1" @if ($voteItem->premium_profile == 1) {{'checked'}} @endif>
+                                <label for="premium_profile" class="mt-1"> Premium Profile</label><br>
+                            </div>
                             <button type="submit" class="btn btn-success btn-sm"><i class="fas fa-save"></i> Edit
                                 Polling Item</button>
-                            <a href="/admin" class="btn btn-secondary btn-sm" type="button"><i
-                                    class="fas fa-reply"></i> Back</a>
                         </div>
                     </div>
                 </form>

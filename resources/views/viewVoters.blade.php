@@ -6,7 +6,7 @@
         $date_end = date('d-m-Y', $voteUnit->date_end);
     @endphp
     <div class="container mt-5">
-        <div class="col-md-10 mx-auto mb-5 card">
+        {{-- <div class="col-md-10 mx-auto mb-5 card">
             <div class="card-body  p-3">
                 <div class="row d-flex align-items-center" data-aos="zoom-in">
                     <div class="col-md-4">
@@ -51,38 +51,54 @@
             </div>
             <div class="card-footer">
                 <div class="gap-2 d-flex justify-content-end">
-                    <a href="/admin/export-voters/{{ $voteUnit->slug }}" class="btn btn-info btn-sm" target="_blank"><i
-                            class="fas fa-print"></i> Export Voters</a>
-                    <a href="/admin" class="btn btn-secondary btn-sm" type="button"><i class="fas fa-reply"></i> Back</a>
+                    <a href="/admin/export-voters/{{ $voteUnit->slug }}" class="btn btn-primary btn-sm" target="_blank">
+                        <i class="fas fa-print"></i> Export Voters
+                    </a>
                 </div>
             </div>
-        </div>
+        </div> --}}
 
-
-        <div class="table-responsive mb-5">
-            <table class="table table-sm" id="dataTable" style="width: 100%; background-color: white;">
-                <thead>
-                    <tr>
-                        <th>No</th>
-                        <th>Nama</th>
-                        <th>Email</th>
-                        <th>Kandidat Dipilih</th>
-                        <th>Tgl & Jam. Voting</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($voters as $vote)
+        <div class="my-5 col-md-10 mx-auto border rounded-2 p-2">
+            @if (\Carbon\Carbon::parse(now())->gt($date_end))
+                <a href="javascript:void(0)" class="mb-2 text-decoration-none text-dark text-center">
+                    <h4>Voters: <strong>{{ $voteUnit->title }}</strong></h4>
+                </a>
+            @else
+                <a href="javascript:void(0)" class="mb-2 text-decoration-none text-dark text-center">
+                    <h4>Voters: <strong>{{ $voteUnit->title }}</strong></h4>
+                </a>
+            @endif
+            <hr>
+            <div class="table-responsive mb-2">
+                <table class="table table-sm" id="dataTable" style="width: 100%;">
+                    <thead>
                         <tr>
-                            <th scope="row">{{ $loop->iteration }}</th>
-                            <td>{{ $vote->user->name }}</td>
-                            <td>{{ $vote->user->email }}</td>
-                            <td>{{ $vote->voteItem->vote_name }}</td>
-                            <td>{{ $vote->created_at }}</td>
-
+                            <th>No</th>
+                            <th>Nama</th>
+                            <th>Email</th>
+                            <th>Kandidat Dipilih</th>
+                            <th>Tgl & Jam. Voting</th>
                         </tr>
-                    @endforeach
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        @foreach ($voters as $vote)
+                            <tr>
+                                <th scope="row">{{ $loop->iteration }}</th>
+                                <td>{{ $vote->user->name }}</td>
+                                <td>{{ $vote->user->email }}</td>
+                                <td>{{ $vote->voteItem->vote_name }}</td>
+                                <td>{{ $vote->created_at }}</td>
+
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+            <div class="gap-2 d-flex justify-content-end">
+                <a href="/admin/export-voters/{{ $voteUnit->slug }}" class="btn btn-primary btn-sm" target="_blank">
+                    <i class="fas fa-print"></i> Export Voters
+                </a>
+            </div>
         </div>
     </div>
 @endsection

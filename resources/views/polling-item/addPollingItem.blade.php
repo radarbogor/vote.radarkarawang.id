@@ -20,8 +20,11 @@
             <div class="card">
                 <form action="{{ route('admin.add-item') }}" method="post" enctype="multipart/form-data">
                     @csrf
-                    <div class="card-header">
+                    <div class="card-header d-flex align-items-center justify-content-between">
                         <h6 class="mb-0">Polling Item - {{ $voteUnit->title }}</h6>
+                        <a href="javascript:void(0)" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#candidateModal">
+                            <i class="fa-regular fa-folder-open"></i> Gunakan Kandidat Tersimpan
+                        </a>
                     </div>
                     <div class="card-body">
                         <div class="row my-2 d-flex align-items-center">
@@ -29,8 +32,10 @@
                             <div class="preview col-md-4 my-3">
                                 <img src="{{ asset('img/default1.jpg') }}" id="file-ip-1-preview"
                                     class="img-thumbnail img_thumb_upl mb-2">
-                                <input class="form-control mb-3" type="file" id="file-ip-1" accept="image/*"
-                                    onchange="showPreview(event);" name="vote_image">
+                            </div>
+                            <div class="col-md-8 mb-2">
+                                <input class="form-control mb-2" type="file" id="file-ip-1" accept="image/*"
+                                onchange="showPreview(event);" name="vote_image">
                                 {{-- Response notif form input vote_image --}}
                                 @error('vote_image')
                                     <div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -39,9 +44,6 @@
                                             aria-label="Close"></button>
                                     </div>
                                 @enderror
-                            </div>
-                            <div class="col-md-8 mb-2">
-
                                 <input type="hidden" name="vote_unit_id" id="vote_unit_id" value="{{ $voteUnit->id }}">
                                 {{-- vote_name & slug --}}
                                 <div class="row">
@@ -104,30 +106,18 @@
                                             aria-label="Close"></button>
                                     </div>
                                 @enderror
-
-                                <div class="row  mt-5">
-                                    <div class="col-lg-6">
-                                        <a href="javascript:void(0)" class="btn btn-primary" data-bs-toggle="modal"
-                                            data-bs-target="#candidateModal">Gunakan Kandidat
-                                            Tersimpan</a>
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <div class="input-group">
-                                            <input type="checkbox" class="form-check-input m-2" id="premium_profile"
-                                                name="premium_profile" value="1">
-                                            <label for="premium_profile" class="mt-1"> Premium Profile</label><br>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>
                     <div class="card-footer">
                         <div class="gap-2 d-flex justify-content-end">
+                            <div class="input-check">
+                                <input type="checkbox" class="form-check-input m-2" id="premium_profile"
+                                    name="premium_profile" value="1">
+                                <label for="premium_profile" class="mt-1"> Premium Profile</label><br>
+                            </div>
                             <button type="submit" class="btn btn-success btn-sm"><i class="fas fa-save"></i> Save
                                 Polling Item</button>
-                            <a href="/admin" class="btn btn-secondary btn-sm" type="button"><i
-                                    class="fas fa-reply"></i> Back</a>
                         </div>
                     </div>
                 </form>
@@ -135,13 +125,13 @@
 
         </div>
 
-        <div class="my-5 col-lg-12">
+        <div class="my-5 col-md-10 mx-auto">
 
             {{-- Looping data items --}}
             {{-- <h6>Poll Items in "{{$data_unit->title}}"</h6> --}}
 
-            <div class="table-responsive">
-                <table class="table table-sm" style="width: 100%; background-color: white;">
+            <div class="table-responsive p-2 border rounded-2">
+                <table class="table table-sm" style="width: 100%;">
                     <thead>
                         <tr>
                             <th>No</th>
@@ -164,40 +154,48 @@
                                 @if ($item->premium_profile == 1)
                                     <td><small class="text-success fst-italic"><i class="fas fa-check-circle"></i> Premium
                                             Profile Items</small></td>
-                                    <td>
+                                    <td class="d-flex gap-1">
                                         <a href="/admin/edit-polling-item/{{ $item->slug }}"
-                                            class="btn btn-primary btn-sm text-light"><i class="fas fa-pen"></i></a>
+                                            class="btn btn-primary btn-sm">
+                                            <i class="fas fa-pen"></i>
+                                        </a>
                                         <a href="/admin/moreProfile/{{ $item->slug }} "
-                                            class="btn btn-success btn-sm"><i class="fas fa-plus"></i> Add Gallery</a>
+                                            class="btn btn-success btn-sm">
+                                            <i class="fa-solid fa-image"></i>
+                                        </a>
                                         {{-- Delete Item --}}
                                         <form action="{{ route('admin.delete-poll-item') }}" method="post">
                                             @csrf
                                             <input type="hidden" name="id" value="{{ $item->id }}">
                                             <button
                                                 onclick="return confirm('Apakah anda yakin ingin menghapus polling item ini?' )"
-                                                class="btn btn-danger btn-sm text-inline mt-1" type="submit"><i
-                                                    class="fa-solid fa-trash"></i></button>
-
+                                                class="btn btn-danger btn-sm" type="submit">
+                                                <i class="fa-solid fa-trash"></i>
+                                            </button>
                                         </form>
                                     </td>
                                 @else
                                     <td><small class="text-secondary fst-italic"><i class="fas fa-times-circle"></i> Basic
                                             Profile Items </small></td>
-                                    <td>
+                                    <td class="d-flex gap-1">
                                         <a href="/admin/edit-polling-item/{{ $item->slug }}"
-                                            class="btn btn-primary btn-sm text-light"><i class="fas fa-pen"></i></a>
+                                            class="btn btn-primary btn-sm">
+                                            <i class="fas fa-pen"></i>
+                                        </a>
                                         <a href="/admin/moreProfile/{{ $item->slug }} "
-                                            class="btn btn-success btn-sm"><i class="fas fa-plus"></i> Add Gallery</a>
+                                            class="btn btn-success btn-sm">
+                                            <i class="fa-solid fa-image"></i>
+                                        </a>
                                         {{-- Delete Item --}}
-                                        <form action="{{ route('admin.delete-poll-item') }}" method="post">
-                                            @csrf
-                                            <input type="hidden" name="id" value="{{ $item->id }}">
-                                            <button
-                                                onclick="return confirm('Apakah anda yakin ingin menghapus polling item ini?' )"
-                                                class="btn btn-danger btn-sm text-inline mt-1" type="submit"><i
-                                                    class="fa-solid fa-trash"></i></button>
-
-                                        </form>
+                                            <form action="{{ route('admin.delete-poll-item') }}" method="post" class="d-block">
+                                                @csrf
+                                                <input type="hidden" name="id" value="{{ $item->id }}">
+                                                <button
+                                                    onclick="return confirm('Apakah anda yakin ingin menghapus polling item ini?' )"
+                                                    class="btn btn-danger btn-sm" type="submit"><i
+                                                        class="fa-solid fa-trash"></i></button>
+    
+                                            </form>
                                     </td>
                                 @endif
 

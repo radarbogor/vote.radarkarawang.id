@@ -64,7 +64,7 @@
                         <div class="row">
                             <div class="col-lg-6">
                                 {{-- Input title --}}
-                                <input type="text" class="form-control mt-4 mb-2" value="{{$vote_unit->title}}"
+                                <input type="text" class="form-control mb-2" value="{{$vote_unit->title}}"
                                     aria-label="Title" name="title" id="title">
                                 {{-- Response notif form input title --}}
                                 @error('title')
@@ -77,7 +77,7 @@
                             </div>
                             <div class="col-lg-6">
                                 {{-- Input title --}}
-                                <span class="text-xs text-danger">click tab for generate  new slug</span>
+                                {{-- <span class="text-xs text-danger">click tab for generate  new slug</span> --}}
                                 <input type="text" class="form-control mb-2" value="{{$vote_unit->slug}}"
                                     aria-label="slug" name="slug" id="slug"  readonly>
                                 {{-- Response notif form input title --}}
@@ -149,7 +149,6 @@
             <div class="card-footer">
                 <div class="gap-2 d-flex justify-content-end">
                     <button type="submit" class="btn btn-success btn-sm"><i class="fas fa-save"></i> Save Polling Unit</button>
-                    <a href="/admin" class="btn btn-secondary btn-sm" type="button"><i class="fas fa-reply"></i> Back</a>
                 </div>
             </div>
         </form>

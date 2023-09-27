@@ -29,7 +29,7 @@
     <div class="col-md-6">
         <h4 class="card-title text-md-center">{{ $polling_unit_with_items->subtitle }}</h4>
     </div>
-    <div class="col-md-3">
+    {{-- <div class="col-md-3">
         @if (Auth::guard('admin')->user())
             <a href="{{ route('admin.home') }}"
                 class="btn btn-outline-secondary btn-sm float-end d-none d-md-block">Back <i
@@ -38,5 +38,5 @@
             <a href="{{ '/' }}" class="btn btn-outline-secondary btn-sm float-end d-none d-md-block">Back <i
                     class="fas fa-reply"></i></a>
         @endif
-    </div>
+    </div> --}}
 </div>

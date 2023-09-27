@@ -14,7 +14,7 @@
         </div>
 
         <div class="col-md-3">
-          <h5 class="text-uppercase mb-4 fw-bold">Soccial</h5>
+          <h5 class="text-uppercase mb-4 fw-bold">Social</h5>
           <hr>
           <p>
             <a class="text-decoration-none text-light" href="https://www.youtube.com/channel/UCZ0d_a44D-aORvJze6V-0Kg" target="_blank">

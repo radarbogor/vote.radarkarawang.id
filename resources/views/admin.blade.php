@@ -8,7 +8,12 @@
   {{-- Content --}}
   <div class="col-md-10 mx-auto my-3 my-md-5">
 
-    <h6 class="text-muted mb-3 mb-md-5">{{ $title }}</h6>
+    <div class="d-flex align-items-center justify-content-between mb-3 mb-md-5">
+      <h4 class="mb-0">{{ $title }}</h4>
+      <a class="btn btn-primary btn-sm" href="admin/addPolling" role="button">
+        <i class="fas fa-plus"></i> Add Polling
+      </a>
+    </div>
 
         {{-- Response --}}
         @if ($message = Session::get('message'))
@@ -21,10 +26,6 @@
         {{-- End Response --}}
 
       @include('partials.adminCardPollunit')
-
-    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-      <a class="text-end text-decoration-none fw-bold" href="admin/addPolling" role="button">Add Polling <i class="fas fa-long-arrow-right"></i></a>
-    </div>
 
   </div>
 
