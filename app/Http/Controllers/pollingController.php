@@ -171,6 +171,9 @@ class pollingController extends Controller
     {
 
         $data_polling_unit_with_items = VoteUnit::with(['vote_items', 'votings'])->where('slug', $slug)->first();
+        for($i=0; $i < count($data_polling_unit_with_items->vote_items); $i++) {
+            $data_polling_unit_with_items->vote_items[$i]['response'] = count(Voting::where('vote_item_id', $data_polling_unit_with_items->vote_items[$i]['id'])->get());
+        }
 
         $total_user_vote = DB::table('votings')
             ->where('vote_unit_id', $data_polling_unit_with_items->id)
@@ -224,9 +227,6 @@ class pollingController extends Controller
 
     public function set_polling_survey(Request $request)
     {
-
-        // dd($request->all());
-
         $validatedData = $request->validate([
             'response' => 'required',
             'user_vote' => 'required',
@@ -256,7 +256,9 @@ class pollingController extends Controller
             ->where('vote_unit_id', $vote_unit->id)
             ->get();
 
-        // dd($total_votings);
+        for($i=0; $i < count($total_votings); $i++) {
+            $total_votings[$i]['response'] = count(Voting::where('vote_item_id', $total_votings[$i]['id'])->get());
+        }
 
         // Ambil data vote unit yang id nya sesuai dengan vote unit id
         $vote_unit = DB::table('vote_units')
@@ -264,18 +266,15 @@ class pollingController extends Controller
             ->first();
 
         // Hitung jumlah total user yang melakukan voting
-        $total_user_vote = DB::table('votings')
+        $total_user_vote = count(DB::table('votings')
             ->where('vote_unit_id', $vote_unit->id)
-            ->count('*');
-
-        // dd($total_user_vote);
+            ->get());
 
         // Hitung semua jumlah data yang ada di vote item yang vote unit id nya sama dengan id vote unit
-        $total_vote_item = DB::table('vote_items')
+        $total_vote_item = count(DB::table('vote_items')
             ->where('vote_unit_id', $vote_unit->id)
-            ->count('*');
+            ->get());
 
-        // dd($total_vote_item);
 
         return view('result', [
             "title" => "Polling Result",
